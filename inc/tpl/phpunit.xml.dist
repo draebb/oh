@@ -1,0 +1,13 @@
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
+	<testsuite name="Tpl">
+		<directory>./tests</directory>
+	</testsuite>
+	<filter>
+		<whitelist>
+			<directory>.</directory>
+			<exclude>
+				<directory>./tests</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>

@@ -1,0 +1,45 @@
+$base-text-color: #222;
+$border-color: #ddd;
+$color-base: #222;
+$color-light: #666;
+$comment-avatar-size: 48px;
+$author-info-avatar-size: 120px;
+$link-color: #3d81d2;
+$visited-link-color: #4F6F95;
+
+$xx-large: 30px;
+$x-large: 26px;
+$large: 20px;
+$medium: 16px;
+$small: 13px;
+$s-small: 11px;
+
+$columns: 12;
+$column-width: 36px;
+$gutter-width: 48px;
+
+// For compass/typography/vertical_rhythm.
+$base-font-size: $medium;
+$base-line-height: 24px;
+$relative-font-sizing: false;
+
+// For compass/layout/grid-background.
+$grid-background-column-color: #ffe5e5;
+$grid-background-total-columns: $columns;
+$grid-background-column-width: $column-width;
+$grid-background-gutter-width: $gutter-width;
+$grid-background-offset: 10px;
+$grid-background-baseline-color: #b7ceed;
+$grid-background-baseline-height: $base-line-height;
+$show-column-grid-backgrounds: false;
+$show-baseline-grid-backgrounds: false;
+
+
+@import 'compass/layout/grid-background';
+@import 'compass/typography/vertical_rhythm';
+@import 'compass/utilities/general/clearfix';
+
+
+@function columns($n) {
+	@return ($n * $column-width) + ($n - 1) * $gutter-width;
+}

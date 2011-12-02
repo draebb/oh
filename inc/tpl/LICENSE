@@ -1,0 +1,7 @@
+Tpl is derived from the Symfony Templating component. The modifications is
+released under [The Unlicense](http://unlicense.org/). The license of Symfony
+is in the file LICENSE_SYMFONY.
+
+The file class-tpl-wp.php, which used a WordPress function, is released under
+the GNU General Public License version 2 or later. A copy of the license is in
+the file LICENSE_GPL.

@@ -1,0 +1,724 @@
+/*
+Theme Name: Oh
+Theme URI: http://github.com/draebb/oh
+Author: draebb
+Description: A base theme based on Twenty Eleven.
+License: The Unlicense and GNU General Public License Version 2 or later
+License URI: LICENSE
+Tags: light, white, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-width, custom-menu, microformats, sticky-post, threaded-comments, translation-ready
+*/
+
+
+@import 'base';
+@import 'normalize';
+
+
+/* =Base styles
+-------------------------------------------------------------- */
+
+body{
+	@include baseline-grid-background(24px, #b7ceed);
+	color: $color-base;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	margin: ($base-line-height * 2) 0 $base-line-height;
+	padding: 0;
+}
+h1,
+h2,
+h3 {
+	font-weight: normal;
+}
+h1 {
+	@extend .font-size-xx-large;
+}
+h2 {
+	@extend .font-size-x-large;
+}
+h3 {
+	@extend .font-size-large;
+}
+
+a {
+	color: $link-color;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul, ol {
+	margin: 0 0 $base-line-height $base-line-height;
+	padding: 0;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-bottom: 0;
+}
+
+dt {
+	font-weight: bold;
+	margin: 0 0 $base-line-height;
+	padding: 0;
+}
+dd {
+	margin: 0 0 $base-line-height $base-line-height;
+	padding: 0;
+}
+
+p {
+	margin: 0 0 $base-line-height;
+	padding: 0;
+}
+
+blockquote {
+	font-style: italic;
+	margin: 0 0 0 $base-line-height;
+	padding: 0;
+	cite {
+		font-style: normal;
+	}
+}
+
+pre {
+	@extend .font-size-small;
+	margin: 0 0 $base-line-height;
+	padding: $base-line-height;
+}
+
+pre,
+code {
+	background-color: #f3f3f3;
+}
+
+p img {
+	margin-top: $base-line-height;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+embed,
+object {
+	max-width: 100%;
+}
+
+figure {
+	border: 1px solid $border-color;
+	margin: 0 0 $base-line-height;
+	max-width: 100%;
+	padding: $base-line-height - 1px;
+	.oldie & {
+		margin-top: $base-line-height;
+	}
+	img {
+		display: block;
+		margin: 0;
+	}
+}
+
+figcaption {
+	@extend .font-size-small;
+}
+
+fieldset {
+	border: 1px solid $border-color;
+	margin: 0 0 $base-line-height;
+	padding: ($base-line-height - 1px);
+}
+
+label {
+	@extend .font-size-small;
+	font-weight: bold;
+}
+
+table {
+	border-bottom: 1px solid $border-color;
+	margin: 0 0 ($base-line-height - 1px);
+	padding: 0;
+	width: 100%;
+}
+
+caption,
+th,
+td {
+	font-weight: normal;
+	text-align: left;
+}
+
+th {
+	font-weight: bold;
+	padding: ($base-line-height / 2) 0;
+}
+
+td {
+	border-top: 1px solid $border-color;
+	padding: ($base-line-height / 2 - 1px) 0 ($base-line-height / 2) 0;
+}
+
+
+/* =Layouts
+-------------------------------------------------------------- */
+
+.inner {
+	@extend .clearfix;
+	@include column-grid-background;
+	margin: 0 auto;
+	padding: 0 10px;
+	position: relative;
+}
+
+
+.no-sidebars {
+	.inner {
+		width: columns(9);
+	}
+}
+
+
+.one-sidebar {
+	.inner {
+		width: columns(12);
+	}
+	#main {
+		width: columns(9);
+	}
+	#sidebar-first,
+	#sidebar-second {
+		width: columns(3);
+	}
+	#sidebar-first {
+		float: left;
+	}
+	#sidebar-second {
+		float: right;
+	}
+}
+
+.sidebar-first #main {
+	float: right;
+}
+
+.sidebar-second #main {
+	float: left;
+}
+
+
+.two-sidebars {
+	$main-width: columns(8);
+	$sidebar-first-width: columns(2);
+	.inner {
+		width: columns(12);
+	}
+	#main,
+	#sidebar-first,
+	#sidebar-second {
+		float: left;
+		margin-right: $gutter-width;
+		position: relative;
+	}
+	#main {
+		/* #sidebar-first width + gutter width */
+		left: $sidebar-first-width + $gutter-width;
+		width: $main-width;
+	}
+	#sidebar-first {
+		/* - #main width - gutter width */
+		left: - $main-width - $gutter-width;
+		width: $sidebar-first-width;
+	}
+	#sidebar-second {
+		margin-right: 0;
+		width: columns(2);
+	}
+}
+
+
+/* =Menu
+-------------------------------------------------------------- */
+
+#main-menu {
+	margin-top: $base-line-height;
+	ul {
+		@extend .clearfix;
+		@extend .font-size-small;
+		margin: 0 (-$base-line-height / 2);
+		padding: 0;
+	}
+	li {
+		float: left;
+		position: relative;
+	}
+	a {
+		color: $color-light;
+		display: block;
+		line-height: $base-line-height * 2;
+		padding: 0 ($base-line-height / 2);
+		text-decoration: none;
+	}
+	ul ul {
+		left: -9999px;
+		margin: 0;
+		position: absolute;
+		width: 180px;
+		z-index: 9999;
+	}
+	ul ul a {
+		background: #f7f7f7;
+		width: 180px;
+	}
+	ul ul ul {
+		top: 0;
+	}
+	li:hover > a {
+		background: #f0f0f0;
+	}
+	li:hover > ul {
+		left: auto;
+	}
+	li li:hover > ul {
+		left: 100%;
+	}
+	.current_page_item > a,
+	.current_page_ancestor > a {
+		color: $color-base
+	}
+}
+
+
+/* =Header
+-------------------------------------------------------------- */
+
+#header {
+	border-bottom: 1px solid $border-color;
+	margin-bottom: $base-line-height * 2 - 1px;
+	.ie7 & {
+		position: relative;
+		z-index: 100;
+	}
+}
+
+#site-title {
+	@extend .font-size-xx-large;
+	margin: $base-line-height 0 0;
+	a {
+		color: $color-base;
+		text-decoration: none;
+	}
+}
+
+#site-description {
+	@extend .font-size-small;
+	color: $color-light;
+}
+
+
+/* =Content
+-------------------------------------------------------------- */
+
+#content {
+	margin-bottom: $base-line-height * 4;
+}
+
+.page-header {
+	@extend .font-size-small;
+	margin-bottom: $base-line-height * 4;
+}
+
+.page-title {
+	@extend .font-size-xx-large;
+	font-weight: normal;
+	margin: 0;
+}
+
+
+.hentry {
+	margin-bottom: $base-line-height * 4;
+	+ nav {
+		margin-top: -$base-line-height * 2;
+	}
+}
+
+.sticky {
+	border: 1px solid $border-color;
+	padding: $base-line-height - 1px;
+}
+
+.entry-header {
+	@extend .font-size-small;
+	margin-bottom: $base-line-height;
+}
+
+.entry-title {
+	@extend .page-title;
+	a {
+		color: $color-base;
+		text-decoration: none;
+	}
+}
+
+.entry-content {
+	margin-bottom: $base-line-height;
+	a:visited {
+		color: $visited-link-color;
+	}
+}
+
+.entry-footer {
+	@extend .font-size-small;
+	clear: both;
+	color: $color-light;
+}
+
+.entry-meta {
+	color: $color-light;
+	list-style: none;
+	margin: 0;
+	address {
+		display: inline;
+	}
+	li {
+		display: inline;
+		padding-right: $base-line-height / 2;
+	}
+}
+
+.single-author .entry-author {
+	display: none;
+}
+
+.entry-datetime {
+	color: $color-light;
+}
+
+.entry-pagination {
+	@extend .font-size-small;
+	clear: both;
+}
+
+
+.author-info {
+	@extend .font-size-small;
+	.avatar {
+		float: left;
+		margin: 0 $base-line-height $base-line-height 0;
+	}
+	.single & {
+		margin-top: $base-line-height * 4;
+	}
+}
+
+.author-info-title {
+	@extend .font-size-large;
+}
+
+.author-info-description {
+	padding-left: $author-info-avatar-size + $base-line-height;
+}
+
+
+.gallery-caption {
+	/**/
+}
+
+
+/* =Widgets
+-------------------------------------------------------------- */
+
+.widget {
+	@extend .font-size-small;
+	color: $color-light;
+	margin-bottom: $base-line-height * 2;
+	ul {
+		list-style: none;
+		margin-left: 0;
+	}
+	ul ul {
+		margin-left: $base-line-height;
+	}
+	li {
+		position: relative;
+		&:before {
+			color: $color-light;
+			content: '*';
+			font-size: 1.2em;
+			left: -10px;
+			position: absolute;
+			top: 3px;
+		}
+	}
+}
+
+.widget-title,
+.widgettitle{
+	@extend .font-size-large;
+	font-weight: normal;
+	margin-top: 0;
+}
+
+.widget_calendar {
+	table {
+		border: 0;
+		margin: 0;
+	}
+	caption,
+	th,
+	td {
+		padding: 0;
+		text-align: center;
+	}
+	caption {
+		font-weight: bold;
+	}
+	td {
+		border: 0;
+	}
+}
+
+.widget_search {
+	#s {
+		width: 100%;
+	}
+}
+
+
+/* =Comments
+----------------------------------------------- */
+
+#comments {
+	margin-bottom: $base-line-height * 2;
+	.avatar {
+		float: left;
+		margin-right: $base-line-height;
+	}
+}
+
+.comments-title,
+#reply-title {
+	@extend .font-size-x-large;
+	font-weight: normal;
+}
+
+.comments-list {
+	list-style: none;
+	margin: $base-line-height 0 ($base-line-height * 4);
+	.children {
+		list-style: none;
+		margin-left: $comment-avatar-size;
+	}
+	& + nav {
+		margin-bottom: $base-line-height * 4;
+		margin-top: - $base-line-height * 3;
+	}
+}
+
+.comment,
+.pingback {
+	margin-bottom: $base-line-height * 2;
+}
+
+.comment-content {
+	padding-left: $comment-avatar-size + $base-line-height;
+}
+
+.comment-footer {
+	@extend .font-size-small;
+	margin-bottom: $base-line-height;
+}
+
+.comment-time {
+	color: $color-light;
+}
+
+.comment-author {
+	@extend .font-size-medium;
+	font-weight: bold;
+	padding-right: $base-line-height / 2;
+}
+
+.bypostauthor {
+	/**/
+}
+
+#respond {
+	@extend .font-size-small;
+	.required {
+		color: red;
+	}
+	input,
+	textarea {
+		display: block;
+	}
+}
+
+.comment-notes,
+.form-allowed-tags {
+	color: $color-light;
+}
+
+
+/* =Footer
+-------------------------------------------------------------- */
+
+#footer {
+	@extend .font-size-small;
+	color: $color-light;
+	margin-bottom: $base-line-height;
+}
+
+
+/* =Misc
+-------------------------------------------------------------- */
+
+.actions {
+	@extend .font-size-s-small;
+	float: right;
+	list-style: none;
+	a {
+		color: $color-light;
+		.comment:hover &,
+		.hentry:hover > .entry-header > & {
+			color: $link-color;
+		}
+	}
+	li {
+		display: inline;
+		padding-left: $base-line-height / 2;
+	}
+}
+
+.nav {
+	@extend .clearfix;
+	@extend .font-size-small;
+}
+
+.nav-previous {
+	float: left;
+	a:before {
+		content: '←';
+		margin-right: 0.2em;
+	}
+}
+
+.nav-next {
+	float: right;
+	a:after {
+		content: '→';
+		margin-left: 0.2em;
+	}
+}
+
+/* figure and figcaption are used instead. */
+.wp-caption,
+.wp-caption-text {
+	/**/
+}
+
+
+/* =Base classes
+
+    For Sass @extend
+-------------------------------------------------------------- */
+
+.font-size-xx-large {
+	@include adjust-font-size-to($xx-large);
+}
+
+.font-size-x-large {
+	@include adjust-font-size-to($x-large);
+}
+
+.font-size-large {
+	@include adjust-font-size-to($large);
+}
+
+.font-size-medium {
+	@include adjust-font-size-to($medium);
+}
+
+.font-size-small {
+	@include adjust-font-size-to($small);
+}
+
+.font-size-s-small {
+	@include adjust-font-size-to($s-small);
+}
+
+.clearfix {
+	// Use legacy to make bottom-margins collapse which prevent the gap above
+	// the #footer getting too large in "Page" pages.
+	@include legacy-pie-clearfix;
+}
+
+
+/* =Helper classes
+-------------------------------------------------------------- */
+
+/* From HTML5 Boilerplate. Renamed and reformated */
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/*
+Extends the .visually-hidden class to allow the element to be focusable when
+navigated to via the keyboard: h5bp.com/p
+*/
+
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/* WordPress generated classes. */
+
+.alignleft,
+.alignright,
+.aligncenter {
+	margin-bottom: $base-line-height;
+}
+
+.alignleft {
+	float: left;
+	margin-right: $base-line-height;
+}
+
+.alignright {
+	float: right;
+	margin-left: $base-line-height;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
