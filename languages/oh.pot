@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Oh package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Oh 0.9.0\n"
+"Project-Id-Version: Oh 0.9\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/oh\n"
 "POT-Creation-Date: 2011-12-01 04:24:23+00:00\n"
 "MIME-Version: 1.0\n"
