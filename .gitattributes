@@ -1,2 +1,3 @@
 .* export-ignore
 inc/tpl/tests export-ignore
+inc/tpl/phpunit.xml.dist export-ignore
