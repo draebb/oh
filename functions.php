@@ -7,7 +7,7 @@
  */
 
 
-require_once TEMPLATEPATH . '/template-helpers.php';
+require_once get_template_directory() . '/template-helpers.php';
 
 
 if ( ! isset( $content_width ) ) {
@@ -20,7 +20,7 @@ add_action( 'after_setup_theme', 'oh_setup' );
  * Sets up theme defaults and registers support for various WordPress features.
  */
 function oh_setup() {
-	load_theme_textdomain( 'oh', TEMPLATEPATH . '/languages' );
+	load_theme_textdomain( 'oh', get_template_directory() . '/languages' );
 
 	$locale = get_locale();
 	$locale_file = get_template_directory() . "/languages/{$locale}.php";
@@ -124,7 +124,7 @@ add_filter( 'template_include', 'oh_render_the_template');
  * Renders the template.
  */
 function oh_render_the_template( $template ) {
-	require_once TEMPLATEPATH . '/inc/tpl/src/class-tpl-wp.php';
+	require_once get_template_directory() . '/inc/tpl/src/class-tpl-wp.php';
 	$tpl = new Tpl_WP();
 	echo $tpl->render( $template );
 }
