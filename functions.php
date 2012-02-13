@@ -23,7 +23,7 @@ function oh_setup() {
 	load_theme_textdomain( 'oh', TEMPLATEPATH . '/languages' );
 
 	$locale = get_locale();
-	$locale_file = TEMPLATEPATH . "/languages/{$locale}.php";
+	$locale_file = get_template_directory . "/languages/{$locale}.php";
 	if ( is_readable( $locale_file ) ) {
 		require_once( $locale_file );
 	}
