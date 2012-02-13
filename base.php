@@ -78,8 +78,6 @@ do_action( 'get_header' );
 <footer id="footer" role="contentinfo">
 <div class="inner">
 
-	Powered by <a href="http://wordpress.org/">WordPress</a>
-
 </div>
 </footer>
 
